@@ -1,5 +1,7 @@
-Customer Churn Prediction App
-📌 Project Overview
+# Customer Churn Prediction App
+
+## 📌 Project Overview
+
 Customer churn is a critical problem for subscription-based businesses, as retaining existing customers is significantly more cost-effective than acquiring new ones.
 
 This project builds an end-to-end Machine Learning system to predict customer churn probability using customer demographics, service usage, and billing data.
