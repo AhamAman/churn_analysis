@@ -86,3 +86,5 @@ Make sure you have Python installed. The project runs inside an isolated virtual
 streamlit run app.py
 ```
 Open [http://localhost:8501](http://localhost:8501) in your browser to interact with the dashboard.
+
+Or run project at https://churnanalysis-msymtyappl7acjy3f7jwnfa.streamlit.app/
