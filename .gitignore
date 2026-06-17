@@ -14,8 +14,7 @@ __pycache__/
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
 
-# Data Files (Avoid pushing large datasets to GitHub)
-data/Telco_Customer_Churn.csv
+
 
 # OS metadata
 .DS_Store
