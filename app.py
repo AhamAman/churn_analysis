@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -5,9 +6,33 @@ import matplotlib.pyplot as plt
 from joblib import load
 import shap
 
+def patch_imputer(estimator):
+    if estimator is None:
+        return
+    if type(estimator).__name__ == "SimpleImputer":
+        if not hasattr(estimator, "_fill_dtype"):
+            if hasattr(estimator, "statistics_") and estimator.statistics_ is not None:
+                estimator._fill_dtype = estimator.statistics_.dtype
+            else:
+                estimator._fill_dtype = None
+    if hasattr(estimator, "steps"):
+        for _, step in estimator.steps:
+            patch_imputer(step)
+    if hasattr(estimator, "transformers_"):
+        for _, trans, _ in estimator.transformers_:
+            patch_imputer(trans)
+    if hasattr(estimator, "transformer_list"):
+        for _, trans in estimator.transformer_list:
+            patch_imputer(trans)
+
 logistic_model = load("models/logistic_model.pkl")
 rf_model = load("models/rf_model.pkl")
 xgb_model = load("models/xgb_model.pkl")
+
+patch_imputer(logistic_model)
+patch_imputer(rf_model)
+patch_imputer(xgb_model)
+
 
 tab1, tab2 = st.tabs(["Prediction", "Model Insights"])
 preprocessor = rf_model.named_steps["preprocessor"]
